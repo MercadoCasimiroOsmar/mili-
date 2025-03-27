@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Carta de Amor</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      height: 100vh;
+      background: linear-gradient(to bottom, #ffdde1, #ee9ca7);
+    }
+
+    body {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Nubes animadas */
+    .cloud {
+      position: absolute;
+      width: 150px;
+      height: 80px;
+      background: white;
+      border-radius: 50%;
+      box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.1);
+      opacity: 0.8;
+      animation: moveClouds 10s linear infinite;
+      z-index: 0;
+    }
+    .cloud::after, .cloud::before {
+      content: '';
+      position: absolute;
+      background: white;
+      width: 100px;
+      height: 60px;
+      border-radius: 50%;
+    }
+    .cloud::after {
+      top: -30px;
+      left: 20px;
+    }
+    .cloud::before {
+      top: -10px;
+      left: 50px;
+    }
+    @keyframes moveClouds {
+      0% { transform: translateX(-200px) translateY(0); }
+      50% { transform: translateX(50vw) translateY(20px); }
+      100% { transform: translateX(100vw) translateY(0); }
+    }
+    /* Posiciones para nubes superiores e inferiores */
+    .cloud-top { top: 20px; }
+    .cloud-bottom { bottom: 20px; }
+
+    /* Corazón central, aumentado de tamaño */
+    .heart {
+      position: absolute;
+      z-index: 2;
+      font-size: 200px;
+      color: red;
+      cursor: pointer;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      animation: heartbeat 1s infinite;
+    }
+    @keyframes heartbeat {
+      0% { transform: translate(-50%, -50%) scale(1); }
+      50% { transform: translate(-50%, -50%) scale(1.2); }
+      100% { transform: translate(-50%, -50%) scale(1); }
+    }
+
+    /* Carta: se usa posición fixed para que quede fija en el centro */
+    .letter {
+      position: fixed;
+      z-index: 3;
+      width: 300px;
+      max-width: 90%;
+      max-height: 80vh;
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      text-align: left;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.5s ease, transform 0.5s ease;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) translateY(20px);
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .letter.show {
+      opacity: 1;
+      visibility: visible;
+      transform: translate(-50%, -50%);
+    }
+
+    /* Lluvia de corazones: corazones un poco más grandes */
+    .heart-animation {
+      position: absolute;
+      font-size: 30px;
+      color: red;
+      animation: fall linear;
+      z-index: 1;
+      pointer-events: none;
+    }
+    @keyframes fall {
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(100vh); opacity: 0; }
+    }
+
+    /* Responsive para móviles */
+    @media (max-width: 500px) {
+      .letter {
+        width: 250px;
+        padding: 15px;
+        font-size: 14px;
+      }
+      .heart {
+        font-size: 60px;
+      }
+      .heart-animation {
+        font-size: 25px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Nubes superiores -->
+  <div class="cloud cloud-top" style="left: -200px;"></div>
+  <div class="cloud cloud-top" style="right: -150px; animation-delay: 2s;"></div>
+  <!-- Nubes inferiores -->
+  <div class="cloud cloud-bottom" style="left: -150px; animation-delay: 4s;"></div>
+  <div class="cloud cloud-bottom" style="right: -200px; animation-delay: 6s;"></div>
+
+  <!-- Corazón central -->
+  <div class="heart" onclick="openLetter()">❤️</div>
+
+ 
+  <div class="letter" id="letter">
+    <p style="color: red; text-align: center; font-size: 50px; font-weight: bold;">Feliz cumpleaños</p>
+
+    <p>Hoy, en tu día especial, quiero que sientas lo especial que eres. Eres la mujer más extraordinaria que he conocido, esa persona
+       que ilumina mis días con solo existir.</p>
+    <p>Me fascina cómo logras convertir cada momento ordinario en algo mágico. Me la paso tan bien contigo quedespués de haber estado contigo 
+      horas, sigo queriendo verte no me canso de estar contigo .</p>
+    <p>Es mi primer cumpleaños contigo y quiero que sea especial. Aunque no pueda estar presente , espero hacerte sentir bien en tu
+       día y en los días que decidas compartir conmigo.</p>
+    <p>Tus gestos, tus risas, hasta tus miradas de ternura, hacen que cada día a tu lado sean mas bonitos . Eres mi lugar favorito
+       y mi mayor emoción al mismo tiempo.</p>
+    <p>En este nuevo año de tu vida, deseo que logres todas tus metas. Quiero verte realizarlas porque sabes que siempre estaré 
+      para ti incluso cuando pienses que no eres una mujer muy linda muy atenta y sencilla que cada que estamos juntos no necesitamos de nada para pasarla bien 
+      hay tantascosas que e pasado contigo y apesar de que aveces nos enojemos solo basta estar un momento juntos para arreglar todo
+      contigo soy diferente me haces sentir especiel y espero que yo tambien te haga sentir asi .</p>
+      <p>Agradesco que nos dieramos la opurtunidad de conocernos mejor por que cada vez estoy mas seguro de que escogi bien ami pareja 
+        aveces no se si soy la persono que esperas tener por que creo que hay cosas que me faltan pero aveces siento que 
+        si soy esa persona por como me tratas por como sonries por como me abrazas y me besas o por todas esas cosas que hacemos cuando solo estamos tu y yo
+        me gusta estar contigo demasiado y se que ultimamente no nos vemos pero lo que siento por ti no cambia nunca pense que tu serias esa persona 
+        que meda tranquilidad con tan solo verte son tantas cosas que siento por ti que espero tu sientas lo mismo me gustas demasiado cada que te veo 
+        sigo teniendo pena pero se me quita cuando empesamos a platicar emos pasado tantas cosas buenas y malas y apesar de eso seguimos juntos y soy
+        de las personas que piensan que todo pasa por algo y por algo segumos juntos nose que me pasa pero nose explicarte bien lo que siento pero
+        quiero que sepas estare para ti cuando lo necesites y me lo pidas te lojuro por la garita jaa 
+        espero que te la pases muy bien pero que si mañana alguien te da un abrazo no los abraces como si fuera yo ,
+        tambien quiero que sepas que te quiero sin importar donde y como estemos eres una maravillosa persona nunca llegue apensar que eres todo lo que 
+        quiero aveces las cosas mas bonitas aparecen sin esperarlas pero ahora estoy aqui para ti, quiero darte las gracias 
+        por apoyarme por dame animos y mucho mas por hacerme sentir especial a tu lado y por darle mas sentido a mi vida desde que tu estas en ella 
+        un dia no significabas nada para mi y ahora lo eres todo como da vueltas la vida, todo es distiento desde esa llamada cuando te dije lo que 
+        sentia por ti y pensar que todo empeso por un beso,que nunca pense que me aria verte de diferente manera y crear sentimentos porti 
+        espero que lo que desees se te cumpla por que lo mereces pero pues creo que ya estarias abusando por que el mejor regalo soy yo y lo tienes por
+        suertudota 
+        <p>Te extraño mucho y espero que tu igual</p>
+        <p>Te mando muchos abrazos y besos </p>
+        <p>Yo igual sere tu ventilador incondicionalmete nunca dudes de lo que siento y lo que haria por ti para que estes bien</p>
+        <p>Ya nose que escribir pero siento que me faltan palabras </p> 
+        <p>Te adoro,te quiero,te necesito mas de lo que imaginas 
+          gracias por compartir y dejarme serparte de tu vida are lo mejor para que te sientas feliz por haberme escogido como algo mas  
+        </p>
+        <p>ERES EL RAYITO DE SOL DE TODOS MIS DIAS</p>
+        <P>FUISTE ,ERES Y SERAS MI MAS BONITA CASUALIDAD</P>
+        <P>SOY MUY FELIZ DE TENERTE AMI LADO </P>
+
+        <P>I LOVE ❤️</P>
+         
+      </p>
+    <p>P.D.: Te quiero muchoooooooooooooooo ATT.Osmar</p>
+    
+  </div>
+
+  <script>
+    let heartRainInterval;
+
+    function openLetter() {
+      // Mostrar la carta de forma fija en el centro
+      document.getElementById('letter').classList.add('show');
+      // Iniciar la lluvia de corazones de forma continua
+      if (!heartRainInterval) {
+        heartRainInterval = setInterval(createFloatingHeart, 300);
+      }
+    }
+
+    function createFloatingHeart() {
+      const heart = document.createElement('div');
+      heart.className = 'heart-animation';
+      heart.innerHTML = '❤️';
+      // Posición aleatoria en todo el ancho de la pantalla
+      heart.style.left = Math.random() * (window.innerWidth - 30) + 'px';
+      // Comenzar justo por encima de la pantalla
+      heart.style.top = '-30px';
+      // Duración aleatoria para el efecto de caída (3 a 6 segundos)
+      const duration = 3 + Math.random() * 3;
+      heart.style.animationDuration = duration + 's';
+      document.body.appendChild(heart);
+      // Eliminar el corazón al finalizar la animación
+      setTimeout(() => heart.remove(), duration * 1000);
+    }
+  </script>
+</body>
+</html>
